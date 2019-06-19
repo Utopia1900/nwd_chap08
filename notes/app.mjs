@@ -3,6 +3,10 @@ import express from 'express';
 import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
+import session from 'express-session';
+import sessionFileStore from 'session-file-store';
+const FileStore = sessionFileStore(session); 
+export const sessionCookieName = 'notescookie.sid';
 import hbs from 'hbs';
 import DBG from 'debug';
 
@@ -15,6 +19,7 @@ var logStream;
 
 import {router as index} from './routes/index';
 import {router as notes} from './routes/notes';
+import {router as users, initPassport} from './routes/users';
 
 const __dirname = path.dirname(new URL(import.meta.url).pathname);
 const app = express();
@@ -39,6 +44,15 @@ if(process.env.REQUEST_LOG_FILE){
   })().catch(err => console.err(err))
 }
 
+app.use(session({ 
+  store: new FileStore({ path: "/tmp/sessions" }), 
+  secret: 'keyboard mouse',
+  resave: true,
+  saveUninitialized: true,
+  name: sessionCookieName
+})); 
+initPassport(app);
+
 app.use(logger(process.env.REQUEST_LOG_FORMAT || 'dev', {
   stream: logStream ? logStream: process.stdout
 }));
@@ -57,6 +71,7 @@ app.use('/assets/vendor/feather-icons', express.static(path.join(__dirname, 'nod
 
 app.use('/', index);
 app.use('/notes', notes);
+app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
