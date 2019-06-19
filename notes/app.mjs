@@ -21,7 +21,11 @@ import {router as index} from './routes/index';
 import {router as notes} from './routes/notes';
 import {router as users, initPassport} from './routes/users';
 
-const __dirname = path.dirname(new URL(import.meta.url).pathname);
+// const __dirname = path.dirname(new URL(import.meta.url).pathname);
+
+import dirname from './dirname.js';
+const {__dirname} = dirname;
+
 const app = express();
 
 const port = process.env.PORT || '3000';
@@ -81,6 +85,7 @@ app.use(function(req, res, next) {
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
+  error(`APP ERROR HANDLER ${err.stack}`);
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
