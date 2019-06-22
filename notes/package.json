@@ -14,7 +14,7 @@
     "server1-sqlite3": "SQLITE_FILE=chap07.sqlite3 NOTES_MODEL=sqlite3 PORT=3001 node --experimental-modules ./bin/www.mjs",
     "server2-sqlite3": "SQLITE_FILE=chap07.sqlite3 NOTES_MODEL=sqlite3 PORT=3002 node --experimental-modules ./bin/www.mjs",
     "start-sequelize": "cross-env SEQUELIZE_CONNECT=models/sequelize-sqlite.yaml NOTES_MODEL=sequelize node  --experimental-modules ./bin/www.mjs",
-    "start-mongodb": "MONGO_URL=mongodb://localhost/ MONGO_DBNAMW=chap07 NOTES_MODEL=mongodb node --experimental-modules ./bin/www.mjs"
+    "start-mongodb": "MONGO_URL=mongodb://localhost/ MONGO_DBNAMW=chap07 NOTES_MODEL=mongodb USER_SERVICE_URL=http://localhost:3333 node --experimental-modules ./bin/www.mjs"
   },
   "dependencies": {
     "bootstrap": "^4.1.3",
