@@ -17,7 +17,7 @@
     "leveldown": "^5.0.3",
     "restify": "^8.3.3",
     "restify-clients": "^2.6.6",
-    "sequelize": "^4.44.0",
+    "sequelize": "^5.15.1",
     "sqlite3": "^4.0.9"
   }
 }
