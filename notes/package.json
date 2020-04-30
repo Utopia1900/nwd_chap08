@@ -27,7 +27,7 @@
     "fs-extra": "^8.0.1",
     "hbs": "~4.0.4",
     "http-errors": "~1.6.3",
-    "jquery": "^1.9.1",
+    "jquery": "^3.5.0",
     "js-yaml": "^3.10.0",
     "level": ">=5.0.x",
     "mongodb": "^3.2.7",
